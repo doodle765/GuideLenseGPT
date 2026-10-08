@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark theme palette (default, OLED-friendly) -->
+    <color name="bg">#0B0F14</color>
+    <color name="card">#161D26</color>
+    <color name="card2">#1B2430</color>
+    <color name="card_border">#242F3D</color>
+    <color name="text">#F2F7FF</color>
+    <color name="text2">#9FB2C6</color>
+    <color name="accent">#35D0BA</color>
+    <color name="accent_ink">#06231F</color>
+    <color name="danger">#FF4D4F</color>
+    <color name="warn">#FFB020</color>
+    <color name="blue">#7AB8FF</color>
+    <color name="violet">#A78BFA</color>
+    <color name="rose">#FF6B8B</color>
+    <color name="amber">#FFB020</color>
+    <color name="accent_soft">#2335D0BA</color>
+    <color name="danger_soft">#23FF4D4F</color>
+</resources>

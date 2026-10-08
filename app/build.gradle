@@ -1,0 +1,87 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'com.guidelens.app'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.guidelens.app"
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            shrinkResources false
+        }
+        debug {
+            applicationIdSuffix ".debug"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions { jvmTarget = '17' }
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.13.1'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'com.google.android.material:material:1.12.0'
+
+    implementation 'androidx.camera:camera-core:1.3.4'
+    implementation 'androidx.camera:camera-camera2:1.3.4'
+    implementation 'androidx.camera:camera-lifecycle:1.3.4'
+    implementation 'androidx.camera:camera-view:1.3.4'
+
+    implementation 'org.tensorflow:tensorflow-lite:2.14.0'
+    implementation 'com.google.mlkit:text-recognition:16.0.1'   // bundled OCR model -> fully offline
+    implementation 'com.google.android.gms:play-services-location:21.3.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.8.4'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
+}
+
+// ---- Bundled ML model validation ----
+// The object detector is committed in app/src/main/assets/detect.tflite so builds are
+// deterministic and do not depend on GitHub/network availability.
+// Segmentation remains optional: if deeplab_cityscapes.tflite is absent, the app simply
+// disables segmentation and keeps object detection available.
+tasks.register('verifyModels') {
+    def assetsDir = layout.projectDirectory.dir('src/main/assets')
+    inputs.dir assetsDir
+    doLast {
+        def det = new File(assetsDir.asFile, 'detect.tflite')
+        if (!det.isFile() || !hasTflMagic(det)) {
+            throw new GradleException('Missing or invalid app/src/main/assets/detect.tflite. The bundled detector model must be present before building.')
+        }
+        println "Using bundled detect.tflite (${det.length()} bytes)"
+
+        def seg = new File(assetsDir.asFile, 'deeplab_cityscapes.tflite')
+        if (seg.isFile() && hasTflMagic(seg)) {
+            println "Using optional bundled deeplab_cityscapes.tflite (${seg.length()} bytes)"
+        } else {
+            println 'Optional segmentation model not bundled; segmentation will be disabled.'
+        }
+    }
+}
+
+// real .tflite files start with the flatbuffer magic "TFL3"
+ext.hasTflMagic = { File f ->
+    if (f == null || !f.isFile() || f.length() < 8) return false
+    f.withInputStream { input ->
+        byte[] header = new byte[8]
+        if (input.read(header) != 8) return false
+        return header[4] == (byte)0x54 && header[5] == (byte)0x46 &&
+               header[6] == (byte)0x4C && header[7] == (byte)0x33
+    }
+}
+
+preBuild.dependsOn 'verifyModels'

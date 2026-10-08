@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Theme.GuideLens" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/accent</item>
+        <item name="colorOnPrimary">@color/accent_ink</item>
+        <item name="colorSecondary">@color/blue</item>
+        <item name="android:colorBackground">@color/bg</item>
+        <item name="colorSurface">@color/card</item>
+        <item name="colorOnSurface">@color/text</item>
+        <item name="android:statusBarColor">@color/bg</item>
+        <item name="android:navigationBarColor">@color/bg</item>
+    </style>
+
+    <!-- Big primary action (talk / start route / save) -->
+    <style name="Widget.GuideLens.Primary" parent="Widget.Material3.Button">
+        <item name="android:minHeight">88dp</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/accent_ink</item>
+        <item name="backgroundTint">@color/accent</item>
+        <item name="cornerRadius">22dp</item>
+        <item name="iconSize">30dp</item>
+        <item name="iconTint">@color/accent_ink</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconPadding">14dp</item>
+    </style>
+
+    <!-- Big destructive action (SOS / stop) -->
+    <style name="Widget.GuideLens.Danger" parent="Widget.Material3.Button">
+        <item name="android:minHeight">88dp</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="backgroundTint">@color/danger</item>
+        <item name="cornerRadius">22dp</item>
+        <item name="iconSize">30dp</item>
+        <item name="iconTint">#FFFFFF</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconPadding">14dp</item>
+    </style>
+
+    <!-- Card-style secondary action -->
+    <style name="Widget.GuideLens.Card" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:minHeight">88dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="backgroundTint">@color/card</item>
+        <item name="strokeColor">@color/card_border</item>
+        <item name="strokeWidth">1.5dp</item>
+        <item name="cornerRadius">22dp</item>
+        <item name="iconSize">30dp</item>
+        <item name="iconTint">@color/accent</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconPadding">16dp</item>
+    </style>
+
+    <!-- Full-width outlined button (stop detection / test voice) -->
+    <style name="Widget.GuideLens.Outline" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:minHeight">88dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="backgroundTint">@color/card</item>
+        <item name="strokeColor">@color/card_border</item>
+        <item name="strokeWidth">1.5dp</item>
+        <item name="cornerRadius">22dp</item>
+    </style>
+
+    <!-- Top-bar square icon button -->
+    <style name="Widget.GuideLens.IconBtn" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:minWidth">48dp</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="iconPadding">0dp</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconSize">24dp</item>
+        <item name="iconTint">@color/text</item>
+        <item name="backgroundTint">@color/card</item>
+        <item name="strokeColor">@color/card_border</item>
+        <item name="strokeWidth">1.5dp</item>
+        <item name="cornerRadius">14dp</item>
+    </style>
+</resources>

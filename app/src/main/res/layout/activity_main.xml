@@ -1,0 +1,724 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg">
+
+    <!-- ===== TOP BAR ===== -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:background="@color/bg">
+
+        <TextView
+            android:id="@+id/brand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GuideLens"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/text" />
+
+        <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/gpsChip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:chipMinTouchTargetSize="0dp"
+            app:ensureMinTouchTargetSize="false"
+            android:text=" GPS"
+            app:chipIcon="@drawable/ic_gps"
+            app:chipIconSize="16dp"
+            app:chipBackgroundColor="@color/card"
+            android:textColor="@color/text2"
+            android:textSize="13sp" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/battChip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            app:chipMinTouchTargetSize="0dp"
+            app:ensureMinTouchTargetSize="false"
+            android:text=" --"
+            app:chipIcon="@drawable/ic_battery"
+            app:chipIconSize="16dp"
+            app:chipBackgroundColor="@color/card"
+            android:textColor="@color/text2"
+            android:textSize="13sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/simpleBtn"
+            style="@style/Widget.GuideLens.IconBtn"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:contentDescription="Toggle simple view for elderly users"
+            app:icon="@drawable/ic_text" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/themeBtn"
+            style="@style/Widget.GuideLens.IconBtn"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:contentDescription="Toggle dark mode"
+            app:icon="@drawable/ic_moon" />
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scroller"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="48dp">
+
+            <!-- ============ HOME ============ -->
+            <LinearLayout
+                android:id="@+id/scrHome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:cardCornerRadius="26dp"
+                    app:cardBackgroundColor="@color/card2"
+                    app:strokeColor="@color/card_border"
+                    app:strokeWidth="1.5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="22dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="READY WHEN YOU ARE"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:letterSpacing="0.12"
+                            android:textColor="@color/accent" />
+
+                        <TextView
+                            android:id="@+id/heroLine"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Hold the button and say&#10;“Navigate to the library”"
+                            android:textSize="21sp"
+                            android:lineSpacingMultiplier="1.15"
+                            android:textColor="@color/text" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnTalk"
+                    style="@style/Widget.GuideLens.Primary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:minHeight="104dp"
+                    android:text="Hold to Talk"
+                    android:textSize="23sp"
+                    app:icon="@drawable/ic_mic"
+                    android:contentDescription="Hold to talk. Say navigate to, where am I, read this, or help." />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnNavigate"
+                    style="@style/Widget.GuideLens.Card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Navigate somewhere"
+                    app:icon="@drawable/ic_nav"
+                    app:iconTint="@color/accent"
+                    android:contentDescription="Navigate to a destination" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnDetect"
+                    style="@style/Widget.GuideLens.Card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Obstacle detection"
+                    app:icon="@drawable/ic_eye"
+                    app:iconTint="@color/blue"
+                    android:contentDescription="Start obstacle detection camera" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnWhereAmI"
+                    style="@style/Widget.GuideLens.Card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Where am I?"
+                    app:icon="@drawable/ic_pin"
+                    app:iconTint="@color/violet"
+                    android:contentDescription="Where am I" />
+
+                <LinearLayout
+                    android:id="@+id/duoRow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="14dp">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnAround"
+                        style="@style/Widget.GuideLens.Card"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Around me"
+                        app:icon="@drawable/ic_scan"
+                        app:iconTint="@color/amber"
+                        android:contentDescription="What is around me" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnRead"
+                        style="@style/Widget.GuideLens.Card"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="14dp"
+                        android:text="Read a sign"
+                        app:icon="@drawable/ic_doc"
+                        app:iconTint="@color/rose"
+                        android:contentDescription="Read sign or text" />
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSettings"
+                    style="@style/Widget.GuideLens.Card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Settings"
+                    app:icon="@drawable/ic_gear"
+                    app:iconTint="@color/text2"
+                    android:contentDescription="Settings" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnMore"
+                    style="@style/Widget.GuideLens.Card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:visibility="gone"
+                    android:text="More options"
+                    app:icon="@drawable/ic_grid"
+                    app:iconTint="@color/text2"
+                    android:contentDescription="More options and settings" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSOS"
+                    style="@style/Widget.GuideLens.Danger"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Emergency SOS"
+                    app:icon="@drawable/ic_alert"
+                    android:contentDescription="Emergency S O S" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:gravity="center"
+                    android:textSize="14sp"
+                    android:textColor="@color/text2"
+                    android:text="Tip: hold Space on a keyboard to talk.&#10;GuideLens assists your cane — it never replaces it." />
+            </LinearLayout>
+
+            <!-- ============ NAVIGATE ============ -->
+            <LinearLayout
+                android:id="@+id/scrNav"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="8dp">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/navBack"
+                        style="@style/Widget.GuideLens.IconBtn"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:contentDescription="Back home"
+                        app:icon="@drawable/ic_back" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="Navigate"
+                        android:textSize="26sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text" />
+                </LinearLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:hint="e.g. Central Library"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/navDestInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:inputType="text"
+                        android:imeOptions="actionGo" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/navGo"
+                    style="@style/Widget.GuideLens.Primary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Start walking route" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    app:cardCornerRadius="22dp"
+                    app:cardBackgroundColor="@color/card"
+                    app:strokeColor="@color/card_border"
+                    app:strokeWidth="1.5dp">
+
+                    <TextView
+                        android:id="@+id/navStatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="64dp"
+                        android:gravity="center_vertical"
+                        android:padding="18dp"
+                        android:textSize="21sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text"
+                        android:text="Idle."
+                        android:importantForAccessibility="yes" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/navStop"
+                    style="@style/Widget.GuideLens.Danger"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Stop navigation" />
+            </LinearLayout>
+
+            <!-- ============ CAMERA ============ -->
+            <LinearLayout
+                android:id="@+id/scrCamera"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="8dp">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/camStopTop"
+                        style="@style/Widget.GuideLens.IconBtn"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:contentDescription="Stop detection and go back"
+                        app:icon="@drawable/ic_back" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="Obstacle detection"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text" />
+                </LinearLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="420dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@android:color/black">
+
+                    <androidx.camera.view.PreviewView
+                        android:id="@+id/previewView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:implementationMode="compatible" />
+
+                    <com.guidelens.app.OverlayView
+                        android:id="@+id/overlayView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </FrameLayout>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    app:cardCornerRadius="22dp"
+                    app:cardBackgroundColor="@color/card"
+                    app:strokeColor="@color/card_border"
+                    app:strokeWidth="1.5dp">
+
+                    <TextView
+                        android:id="@+id/camStatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="64dp"
+                        android:gravity="center_vertical"
+                        android:padding="18dp"
+                        android:textSize="19sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text"
+                        android:text="Starting camera…"
+                        android:importantForAccessibility="yes" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/camStop"
+                    style="@style/Widget.GuideLens.Outline"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Stop detection" />
+            </LinearLayout>
+
+            <!-- ============ SOS ============ -->
+            <LinearLayout
+                android:id="@+id/scrSOS"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="8dp">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/sosBack"
+                        style="@style/Widget.GuideLens.IconBtn"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:contentDescription="Back home"
+                        app:icon="@drawable/ic_back" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="Emergency SOS"
+                        android:textSize="26sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text" />
+                </LinearLayout>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:cardCornerRadius="22dp"
+                    app:cardBackgroundColor="@color/danger_soft"
+                    app:strokeColor="@color/danger"
+                    app:strokeWidth="1.5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="24dp">
+
+                        <ImageView
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:src="@drawable/ic_alert"
+                            app:tint="@color/danger" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:gravity="center"
+                            android:textSize="15sp"
+                            android:textColor="@color/danger"
+                            android:text="Pressing the button opens a text message to your emergency contact with your exact location." />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/sosSend"
+                    style="@style/Widget.GuideLens.Danger"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:minHeight="128dp"
+                    android:text="SEND SOS WITH MY LOCATION"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:gravity="center"
+                    android:textSize="15sp"
+                    android:textColor="@color/text2"
+                    android:text="Set the contact number in Settings." />
+            </LinearLayout>
+
+            <!-- ============ SETTINGS ============ -->
+            <LinearLayout
+                android:id="@+id/scrSettings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="8dp">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/setBack"
+                        style="@style/Widget.GuideLens.IconBtn"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:contentDescription="Back home"
+                        app:icon="@drawable/ic_back" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="Settings"
+                        android:textSize="26sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="APPEARANCE"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.12"
+                    android:textColor="@color/accent" />
+
+                <RadioGroup
+                    android:id="@+id/themeGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp">
+
+                    <RadioButton
+                        android:id="@+id/themeDark"
+                        android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"
+                        android:text="Dark" android:textSize="19sp" android:textColor="@color/text" />
+                    <RadioButton
+                        android:id="@+id/themeLight"
+                        android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"
+                        android:text="Light" android:textSize="19sp" android:textColor="@color/text" />
+                </RadioGroup>
+
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/chkSimple"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="56dp"
+                    android:text="Simple view"
+                    android:textSize="19sp"
+                    android:textColor="@color/text" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:text="FEEDBACK"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.12"
+                    android:textColor="@color/accent" />
+
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/chkAudio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="56dp"
+                    android:text="Spoken audio"
+                    android:textSize="19sp"
+                    android:textColor="@color/text" />
+
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/chkHaptics"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="56dp"
+                    android:text="Vibration"
+                    android:textSize="19sp"
+                    android:textColor="@color/text" />
+
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/chkStepFree"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="56dp"
+                    android:text="Prefer step-free routes"
+                    android:textSize="19sp"
+                    android:textColor="@color/text" />
+
+                <TextView
+                    android:id="@+id/rateLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Speech speed  1.0×"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text" />
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/setRate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:valueFrom="0.6"
+                    android:valueTo="1.6"
+                    android:stepSize="0.1"
+                    android:value="1.0" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:text="HOW MUCH IT SPEAKS"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.12"
+                    android:textColor="@color/accent" />
+
+                <RadioGroup
+                    android:id="@+id/verbGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp">
+
+                    <RadioButton android:id="@+id/verbMinimal" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Minimal" android:textSize="17sp" android:textColor="@color/text" />
+                    <RadioButton android:id="@+id/verbStandard" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Standard" android:textSize="17sp" android:textColor="@color/text" />
+                    <RadioButton android:id="@+id/verbVerbose" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Verbose" android:textSize="17sp" android:textColor="@color/text" />
+                </RadioGroup>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="ALERT DISTANCE"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.12"
+                    android:textColor="@color/accent" />
+
+                <RadioGroup
+                    android:id="@+id/sensGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp">
+
+                    <RadioButton android:id="@+id/sensNear" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Near" android:textSize="17sp" android:textColor="@color/text" />
+                    <RadioButton android:id="@+id/sensStandard" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Standard" android:textSize="17sp" android:textColor="@color/text" />
+                    <RadioButton android:id="@+id/sensFar" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Far" android:textSize="17sp" android:textColor="@color/text" />
+                </RadioGroup>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:text="SAFETY"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.12"
+                    android:textColor="@color/accent" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:hint="Emergency contact phone number"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/setContact"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:inputType="phone" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSaveSettings"
+                    style="@style/Widget.GuideLens.Primary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:text="Save settings" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnTestVoice"
+                    style="@style/Widget.GuideLens.Outline"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Test voice"
+                    app:icon="@drawable/ic_speaker"
+                    app:iconTint="@color/accent" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

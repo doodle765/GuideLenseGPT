@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Light theme palette -->
+    <color name="bg">#EEF2F7</color>
+    <color name="card">#FFFFFF</color>
+    <color name="card2">#F4F7FA</color>
+    <color name="card_border">#E2E8F0</color>
+    <color name="text">#0F1720</color>
+    <color name="text2">#52657A</color>
+    <color name="accent">#0E9E88</color>
+    <color name="accent_ink">#FFFFFF</color>
+    <color name="danger">#E5484D</color>
+    <color name="warn">#B45309</color>
+    <color name="blue">#2563EB</color>
+    <color name="violet">#7C3AED</color>
+    <color name="rose">#E11D48</color>
+    <color name="amber">#D97706</color>
+    <color name="accent_soft">#1F0E9E88</color>
+    <color name="danger_soft">#1AE5484D</color>
+</resources>

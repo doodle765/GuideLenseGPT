@@ -1,0 +1,90 @@
+name: Build GuideLens APK
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build debug APK
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v5
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Gradle 8.7
+        uses: gradle/actions/setup-gradle@v5
+        with:
+          gradle-version: '8.7'
+          cache-read-only: false
+
+      - name: Show build environment
+        run: |
+          java -version
+          gradle --version
+          echo "Runner: $RUNNER_OS"
+
+      - name: Verify project files
+        run: |
+          test -f settings.gradle
+          test -f build.gradle
+          test -f app/build.gradle
+          test -f app/src/main/AndroidManifest.xml
+          test -f app/src/main/assets/detect.tflite
+          echo "Project structure OK"
+
+      - name: Verify bundled ML model
+        run: |
+          F=app/src/main/assets/detect.tflite
+          SIZE=$(wc -c < "$F")
+          MAGIC=$(dd if="$F" bs=1 skip=4 count=4 2>/dev/null)
+          test "$MAGIC" = "TFL3"
+          test "$SIZE" -gt 1000
+          echo "Bundled detector model OK: ${SIZE} bytes"
+
+      - name: Validate Gradle configuration
+        run: gradle help --stacktrace --warning-mode all
+
+      - name: Build debug APK
+        id: build
+        run: gradle :app:assembleDebug --stacktrace --warning-mode all --console=plain 2>&1 | tee gradle-build.log
+
+      - name: Show APK information
+        if: success()
+        run: |
+          ls -lh app/build/outputs/apk/debug/
+          file app/build/outputs/apk/debug/*.apk
+
+      - name: Upload APK
+        if: success()
+        uses: actions/upload-artifact@v5
+        with:
+          name: guidelens-debug-apk
+          path: app/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Upload build diagnostics
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: guidelens-build-diagnostics
+          path: |
+            gradle-build.log
+            app/build/reports/**
+            app/build/outputs/logs/**
+          if-no-files-found: warn
+          retention-days: 14
